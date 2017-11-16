@@ -1,0 +1,88 @@
+.message {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.message-data {
+font-weight: bold;
+color:#a57878
+}
+
+.pokemon {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 20px;
+}
+
+.pokemon-card {
+  background: #eeeeee;
+  box-shadow: 5px 5px 5px;
+  min-height: 250px;
+  cursor: pointer;
+}
+
+.pokemon-name {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  background: rgb(252, 181, 181);
+}
+
+.pokemon-details {
+  padding: 10px;
+  line-height: 1.2;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+}
+
+table {
+    margin: 0 auto;
+}
+td {
+    padding: 10px;
+}
+
+th {
+    background: rgb(177, 177, 218);
+    text-align: center;
+    padding: 10px;
+}
+
+.more-details > table th, .more-details > table td {
+    border: 2px solid rgb(156, 156, 193);
+    border-collapse: collapse;
+}
+
+
+h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0 auto;
+    padding-left:20px;
+}
+
+.pagination {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    grid-column: 5/6;
+    grid-row: 5/6;
+    align-items: center;
+    justify-items: center;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button:enabled {
+    cursor: pointer;
+}
+
+

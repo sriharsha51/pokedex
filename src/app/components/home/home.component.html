@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="message">
+    <p *ngIf="message" class="message-data">{{ message }}</p>
+    <br>
+    <p *ngIf="loadingPokemons">
+      <i class="fa fa-spinner" aria-hidden="true"></i>&nbsp;{{ fetchMsg }}</p>
+  </div>
+  <div class="pokemon">
+    <div *ngFor="let pokemon of pokemonsData" (click)="openModal(pokemon, pokemonModal)">
+      <div class="pokemon-card">
+        <div class="pokemon-name">
+          {{ pokemon.name }}
+        </div>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" alt="{{ pokemon.name }}">
+        <div class="pokemon-details">
+          <table class="details-table">
+            <tr>
+              <td>
+                <strong>Height: </strong>
+              </td>
+              <td>{{ pokemon.height }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Type: </strong>
+              </td>
+              <td>
+                <span *ngFor="let typeDetails of pokemon.types">
+                  {{ typeDetails.type.name }}
+                  <br>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="pagination" *ngIf="showButtons">
+      <button class="btn btn-primary" (click)="previousPage()" [disabled]="disablePrevious">
+        Pervious
+      </button>
+      <button class="btn btn-primary" (click)="nextPage()" [disabled]="disableNext">
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+<ng-template #pokemonModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4>{{ pokemonDetails.name }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonDetails.id}}.png" alt="{{ pokemonDetails.name }}">
+    <div class="more-details">
+      <table>
+        <tr>
+          <th colspan="2">
+            Details
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <strong>Weight: </strong>
+          </td>
+          <td>{{ pokemonDetails.weight }}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Abilities: </strong>
+          </td>
+          <td>
+            <span *ngFor="let abilityDetails of pokemonDetails.abilities">
+              {{ abilityDetails.ability.name }}
+              <br>
+              <br>
+            </span>
+          </td>
+        </tr>
+        <br>
+        <span>
+          <button class="btn btn-primary" (click)="getAbilities()" [disabled]="disableModalButton">Click to view details of abilities.</button>
+        </span>
+        <br>
+        <br>
+        <span *ngIf="modalFetchMsg">
+          <i class="fa fa-spinner" aria-hidden="true"></i>&nbsp;Fetching abilities Details...</span>
+        <tr *ngIf="showHeadings">
+          <th>Ability Name</th>
+          <th>Ability Description</th>
+        </tr>
+        <tr *ngFor="let ability of abilitiesData">
+          <td> {{ ability.name }} </td>
+          <td *ngFor="let effectDetails of ability.effect_entries">
+            {{ effectDetails.short_effect }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
